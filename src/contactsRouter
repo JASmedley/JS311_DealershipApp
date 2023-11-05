@@ -1,0 +1,11 @@
+let express = require("express");
+
+let router = express.Router()
+
+let controller = require("./contactsController")
+
+router.get("/contacts", controller.getContacts);
+router.get("/contacts/:id", controller.getContact);
+router.post("/contacts", controller.addContact)
+
+module.exports = router;

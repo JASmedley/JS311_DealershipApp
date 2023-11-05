@@ -1,0 +1,35 @@
+let db = require("../data/contacts")
+
+let getContacts = function(req,res){
+  res.json(db);
+}
+let getContact = function(req,res){
+  let id = req.params.id;
+  let found;
+  for(let i=0;i<db.length;i++){
+      let item = db[i];
+      if(item._id == id){
+          found = item;
+      }
+  }
+  res.json(found)
+}
+let addContact = function(req,res){
+  let contact = req.body;
+  let next = db.length+1;
+  let newID = contact._id
+  let newContact = {
+    id: newID,
+    name: contact.name,
+    occupation: contact.occupation,
+    avatar: contact.avatar,
+}
+  db.push(newContact);
+  res.json(newContact);
+}
+
+module.exports = {
+  getContacts,
+  getContact,
+  addContact
+}
