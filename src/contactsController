@@ -17,12 +17,12 @@ let getContact = function(req,res){
 let addContact = function(req,res){
   let contact = req.body;
   let next = db.length+1;
-  let newID = contact._id
+  contact._id = next
   let newContact = {
-    id: newID,
     name: contact.name,
     occupation: contact.occupation,
     avatar: contact.avatar,
+    _id: contact._id
 }
   db.push(newContact);
   res.json(newContact);
